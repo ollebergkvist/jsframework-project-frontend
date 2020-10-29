@@ -68,45 +68,37 @@ test.describe("Test suite me-vue-app", function() {
       const element3 = await browser.findElement(By.id("login"));
       await element3.click();
 
-      browser.wait(until.elementLocated(By.id("h4-account"), 30000));
+      browser.wait(until.elementLocated(By.id("h4-account")));
     } catch (err) {
       console.log(err);
     }
   }
 
-  // Test functions
-  // function signout() {
-  //   browser.findElement(By.id("logout")).then(function(element) {
-  //     element.click();
-  //   });
-  // }
+  async function register() {
+    let email = "test123@test.gmail.com";
+    let password = "testtest";
+    let firstname = "test";
+    let lastname = "test";
 
-  // function register() {
-  //   let email = "test123@test.gmail.com";
-  //   let password = "testtest";
-  //   let firstname = "test";
-  //   let lastname = "test";
+    const element = await browser.findElement(By.id("input-1"));
+    element.sendKeys(email);
 
-  //   browser.findElement(By.id("input-1")).then(function(element) {
-  //     element.sendKeys(email);
-  //   });
+    const element2 = await browser.findElement(By.id("input-2"));
 
-  //   browser.findElement(By.id("input-2")).then(function(element) {
-  //     element.sendKeys(password);
-  //   });
+    await element2.sendKeys(password, Key.RETURN);
 
-  //   browser.findElement(By.id("input-3")).then(function(element) {
-  //     element.sendKeys(firstname);
-  //   });
+    const element3 = await browser.findElement(By.id("input-3"));
 
-  //   browser.findElement(By.id("input-4")).then(function(element) {
-  //     element.sendKeys(lastname);
-  //   });
+    await element3.sendKeys(firstname);
 
-  //   browser.findElement(By.id("button")).then(function(element) {
-  //     element.click();
-  //   });
-  // }
+    const element4 = await browser.findElement(By.id("input-4"));
+    await element4.sendKeys(lastname);
+
+    const element5 = browser.findElement(By.id("button"));
+    await element5.click();
+
+    browser.wait(until.elementLocated(By.id("h4-login")));
+  }
 
   // Test case
   test.it("Test index route", function(done) {
@@ -124,12 +116,11 @@ test.describe("Test suite me-vue-app", function() {
   });
 
   // Test case
-  // test.it("Test to register account", function(done) {
-  //   goToNavLink("Register");
-  //   register();
-  //   assertH4("Log in");
-  //   done();
-  // });
+  test.it("Test to register account", function(done) {
+    goToNavLink("Register");
+    register();
+    done();
+  });
 
   // Test case
   test.it("Test sign in", function(done) {
@@ -137,28 +128,20 @@ test.describe("Test suite me-vue-app", function() {
     done();
   });
 
-  // // Test case
-  // test.it("Test sign in and sign out", function(done) {
-  //   signin();
-  //   signout();
-  //   assertH4("Log in");
-  //   done();
-  // });
+  // Test case
+  test.it("Test signin and dashboard links", function(done) {
+    signin();
 
-  // // Test case
-  // test.it("Test signin and dashboard links", function(done) {
-  //   signin();
+    let account = await browser.findElement(By.linkText("Account"));
+    let portfolio = await browser.findElement(By.linkText("Portfolio"));
+    let stocks = await browser.findElement(By.linkText("Stocks"));
+    let deposit = await browser.findElement(By.linkText("Deposit"));
 
-  //   let account = browser.findElement(By.linkText("Account"));
-  //   let portfolio = browser.findElement(By.linkText("Portfolio"));
-  //   let stocks = browser.findElement(By.linkText("Stocks"));
-  //   let deposit = browser.findElement(By.linkText("Deposit"));
+    assert.ok(account);
+    assert.ok(portfolio);
+    assert.ok(stocks);
+    assert.ok(deposit);
 
-  //   assert.ok(account);
-  //   assert.ok(portfolio);
-  //   assert.ok(stocks);
-  //   assert.ok(deposit);
-
-  //   done();
-  // });
+    done();
+  });
 });
