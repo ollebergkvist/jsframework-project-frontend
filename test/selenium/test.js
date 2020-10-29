@@ -64,7 +64,7 @@ test.describe("Test suite me-vue-app", function() {
       element.sendKeys(password);
     });
 
-    browser.findElement(By.css("button")).then(function(element) {
+    browser.findElement(By.id("button")).then(function(element) {
       element.click();
     });
   }
@@ -76,32 +76,32 @@ test.describe("Test suite me-vue-app", function() {
     });
   }
 
-  function register() {
-    let email = "test123@test.gmail.com";
-    let password = "testtest";
-    let firstname = "test";
-    let lastname = "test";
+  // function register() {
+  //   let email = "test123@test.gmail.com";
+  //   let password = "testtest";
+  //   let firstname = "test";
+  //   let lastname = "test";
 
-    browser.findElement(By.id("input-1")).then(function(element) {
-      element.sendKeys(email);
-    });
+  //   browser.findElement(By.id("input-1")).then(function(element) {
+  //     element.sendKeys(email);
+  //   });
 
-    browser.findElement(By.id("input-2")).then(function(element) {
-      element.sendKeys(password);
-    });
+  //   browser.findElement(By.id("input-2")).then(function(element) {
+  //     element.sendKeys(password);
+  //   });
 
-    browser.findElement(By.id("input-3")).then(function(element) {
-      element.sendKeys(firstname);
-    });
+  //   browser.findElement(By.id("input-3")).then(function(element) {
+  //     element.sendKeys(firstname);
+  //   });
 
-    browser.findElement(By.id("input-4")).then(function(element) {
-      element.sendKeys(lastname);
-    });
+  //   browser.findElement(By.id("input-4")).then(function(element) {
+  //     element.sendKeys(lastname);
+  //   });
 
-    browser.findElement(By.id("button")).then(function(element) {
-      element.click();
-    });
-  }
+  //   browser.findElement(By.id("button")).then(function(element) {
+  //     element.click();
+  //   });
+  // }
 
   // Test case
   test.it("Test index route", function(done) {
@@ -119,19 +119,20 @@ test.describe("Test suite me-vue-app", function() {
   });
 
   // Test case
-  test.it("Test to register account", function(done) {
-    goToNavLink("Register");
-    register();
-    assertH4("Log in");
-    done();
-  });
-
-  // // Test case
-  // test.it("Test sign in", function(done) {
-  //   signin();
-  //   assertH4("Account");
+  // test.it("Test to register account", function(done) {
+  //   goToNavLink("Register");
+  //   register();
+  //   assertH4("Log in");
   //   done();
   // });
+
+  // Test case
+  test.it("Test sign in", function(done) {
+    goToNavLink("Log in");
+    signin();
+    assertH4("Account");
+    done();
+  });
 
   // // Test case
   // test.it("Test sign in and sign out", function(done) {
