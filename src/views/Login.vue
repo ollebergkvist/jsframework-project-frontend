@@ -32,7 +32,7 @@
       <div v-if="flag">
         <p class="error">Wrong username or password entered</p>
       </div>
-      <b-button class="btn-block" type="submit" variant="primary"
+      <b-button id="login" class="btn-block" type="submit" variant="primary"
         >Login</b-button
       >
     </b-form>

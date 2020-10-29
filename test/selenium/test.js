@@ -23,14 +23,6 @@ function matchUrl(target) {
   });
 }
 
-function assertH1(target) {
-  browser.findElement(By.css("h1")).then(function(element) {
-    element.getText().then(function(text) {
-      assert.equal(text, target);
-    });
-  });
-}
-
 function assertH4(target) {
   browser.findElement(By.css("h4")).then(function(element) {
     element.getText().then(function(text) {
@@ -62,7 +54,7 @@ test.describe("Test suite me-vue-app", function() {
   // Test functions
   function signin() {
     let email = "test@test.test";
-    let password = "test";
+    let password = "testtest";
 
     browser.findElement(By.id("input-1")).then(function(element) {
       element.sendKeys(email);
@@ -77,6 +69,13 @@ test.describe("Test suite me-vue-app", function() {
     });
   }
 
+  // Test functions
+  function signout() {
+    browser.findElement(By.id("logout")).then(function(element) {
+      element.click();
+    });
+  }
+
   // Test case
   test.it("Test index route", function(done) {
     matchUrl("/");
@@ -85,9 +84,15 @@ test.describe("Test suite me-vue-app", function() {
   });
 
   // Test case
+  test.it("Test index route", function(done) {
+    matchUrl("/register");
+    assertH4("Register");
+    done();
+  });
+
+  // Test case
   test.it("Test signin", function(done) {
     signin();
-    matchUrl("/");
     assertH4("Account");
     done();
   });
@@ -95,11 +100,25 @@ test.describe("Test suite me-vue-app", function() {
   // Test case
   test.it("Test signin and signout", function(done) {
     signin();
-
-    browser.findElement(By.linkText("Logout")).then(function(element) {
-      element.click();
-    });
+    signout();
     assertH4("Log in");
+    done();
+  });
+
+  // Test case
+  test.it("Test signin and dashboard links", function(done) {
+    signin();
+
+    let account = browser.findElement(By.linkText("Account"));
+    let portfolio = browser.findElement(By.linkText("Portfolio"));
+    let stocks = browser.findElement(By.linkText("Stocks"));
+    let deposit = browser.findElement(By.linkText("Deposit"));
+
+    assert.ok(account);
+    assert.ok(portfolio);
+    assert.ok(stocks);
+    assert.ok(deposit);
+
     done();
   });
 });

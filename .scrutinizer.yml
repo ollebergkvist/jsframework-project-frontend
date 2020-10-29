@@ -7,7 +7,3 @@ build:
 
 checks:
   javascript: true
-
-filter:
-  excluded_paths:
-    - "test/"
