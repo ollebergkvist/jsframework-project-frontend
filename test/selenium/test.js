@@ -143,9 +143,9 @@ test.describe("Test suite me-vue-app", function() {
   });
 
   // Test case
-  test.it("Test sign in and sign out", function(done) {
-    signin();
-    signout();
-    done();
-  });
+  // test.it("Test sign in and sign out", function(done) {
+  //   signin();
+  //   signout();
+  //   done();
+  // });
 });
