@@ -1,6 +1,6 @@
 <template>
   <div class="main">
-    <h4>Account</h4>
+    <h4 id="h4-account">Account</h4>
     <div v-if="!user">
       <img
         src="../assets/preloader.svg"

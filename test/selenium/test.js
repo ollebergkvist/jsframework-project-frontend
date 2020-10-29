@@ -11,20 +11,20 @@ const By = webdriver.By;
 
 let browser;
 
-function goToNavLink(target) {
-  browser.findElement(By.linkText(target)).then(function(element) {
+async function goToNavLink(target) {
+  await browser.findElement(By.linkText(target)).then(function(element) {
     element.click();
   });
 }
 
-function matchUrl(target) {
-  browser.getCurrentUrl().then(function(url) {
+async function matchUrl(target) {
+  await browser.getCurrentUrl().then(function(url) {
     assert.ok(url.endsWith(target));
   });
 }
 
-function assertH4(target) {
-  browser.findElement(By.css("h4")).then(function(element) {
+async function assertH4(target) {
+  await browser.findElement(By.css("h4")).then(function(element) {
     element.getText().then(function(text) {
       assert.equal(text, target);
     });
@@ -35,38 +35,43 @@ function assertH4(target) {
 test.describe("Test suite me-vue-app", function() {
   this.timeout(0);
 
-  test.beforeEach(function(done) {
+  test.beforeEach(async function(done) {
     browser = new webdriver.Builder()
       .withCapabilities(webdriver.Capabilities.firefox())
       .setFirefoxOptions(new firefox.Options().headless())
       .forBrowser("firefox")
       .build();
 
-    browser.get("http://localhost:8082/");
+    await browser.get("http://localhost:8082/");
     done();
   });
 
-  afterEach(function(done) {
-    browser.quit();
+  afterEach(async function(done) {
+    await browser.quit();
     done();
   });
 
   // Test functions
-  function signin() {
+  async function signin() {
     let email = "test@test.test";
     let password = "testtest";
 
-    browser.findElement(By.id("input-1")).then(function(element) {
-      element.sendKeys(email);
-    });
+    try {
+      goToNavLink("Login");
 
-    browser.findElement(By.id("input-2")).then(function(element) {
-      element.sendKeys(password);
-    });
+      const element = await browser.findElement(By.id("input-1"));
+      await element.sendKeys(email, Key.RETURN);
 
-    browser.findElement(By.id("login")).then(function(element) {
-      element.click();
-    });
+      const element2 = await browser.findElement(By.id("input-2"));
+      await element2.sendKeys(password);
+
+      const element3 = await browser.findElement(By.id("login"));
+      await element3.click();
+
+      browser.wait(until.elementLocated(By.id("h4-account"), 30000));
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   // Test functions
@@ -128,9 +133,7 @@ test.describe("Test suite me-vue-app", function() {
 
   // Test case
   test.it("Test sign in", function(done) {
-    goToNavLink("Login");
     signin();
-    assertH4("Account");
     done();
   });
 
