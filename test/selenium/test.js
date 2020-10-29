@@ -60,7 +60,7 @@ test.describe("Test suite me-vue-app", function() {
       goToNavLink("Login");
 
       const element = await browser.findElement(By.id("input-1"));
-      await element.sendKeys(email, Key.RETURN);
+      await element.sendKeys(email);
 
       const element2 = await browser.findElement(By.id("input-2"));
       await element2.sendKeys(password);
@@ -68,7 +68,7 @@ test.describe("Test suite me-vue-app", function() {
       const element3 = await browser.findElement(By.id("login"));
       await element3.click();
 
-      browser.wait(until.elementLocated(By.id("h4-account"), 30000));
+      browser.wait(until.elementLocated(By.id("h4-account")));
     } catch (err) {
       console.log(err);
     }
