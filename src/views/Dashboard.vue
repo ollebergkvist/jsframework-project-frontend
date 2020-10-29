@@ -55,7 +55,6 @@ h1 {
 import axios from "axios";
 const moment = require("moment");
 let auth = require("../models/auth");
-let config = require("../config/config");
 
 export default {
   data() {
@@ -79,7 +78,7 @@ export default {
     getData() {
       axios({
         method: "POST",
-        url: config.url + "/findone",
+        url: process.env.VUE_APP_SERVER + "/findone",
         data: {
           id: this.id,
         },

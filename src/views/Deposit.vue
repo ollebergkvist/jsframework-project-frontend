@@ -64,7 +64,7 @@ h1 {
 <script>
 import axios from "axios";
 let auth = require("../models/auth");
-let config = require("../config/config");
+
 export default {
   data() {
     return {
@@ -84,7 +84,7 @@ export default {
     depositMoney(event) {
       axios({
         method: "PUT",
-        url: config.url + "/deposit",
+        url: process.env.VUE_APP_SERVER + "/deposit",
         // headers: { "x-access-token": this.token },
         data: {
           id: this.id,

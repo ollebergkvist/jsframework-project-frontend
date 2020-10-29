@@ -84,7 +84,7 @@ test.describe("Test suite me-vue-app", function() {
   });
 
   // Test case
-  test.it("Test index route", function(done) {
+  test.it("Test register route", function(done) {
     matchUrl("/register");
     assertH4("Register");
     done();

@@ -79,7 +79,7 @@
 
 <script>
 import axios from "axios";
-let config = require("../config/config");
+
 export default {
   data() {
     return {
@@ -95,9 +95,10 @@ export default {
   },
   methods: {
     getFormValues() {
+      console.log(this.url);
       axios({
         method: "POST",
-        url: config.url + "/signup",
+        url: process.env.VUE_APP_SERVER + "/signup",
         data: {
           email: this.form.email,
           password: this.form.password,

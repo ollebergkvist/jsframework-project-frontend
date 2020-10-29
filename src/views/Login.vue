@@ -50,7 +50,6 @@
 
 <script>
 let auth = require("../models/auth");
-let config = require("../config/config");
 
 import axios from "axios";
 export default {
@@ -71,7 +70,7 @@ export default {
     getFormValues() {
       axios({
         method: "POST",
-        url: config.url + "/login",
+        url: process.env.VUE_APP_SERVER + "/login",
         data: {
           email: this.form.email,
           password: this.form.password,

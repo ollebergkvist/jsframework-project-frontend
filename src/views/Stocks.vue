@@ -47,9 +47,9 @@
 import axios from "axios";
 import io from "socket.io-client";
 import Chart from "../components/Chart";
-let config = require("../config/config");
+
 let auth = require("../models/auth");
-var socket = io(process.env.VUE_APP_LOCAL_SERVER);
+var socket = io(process.env.VUE_APP_SERVER);
 
 export default {
   name: "Stocks",
@@ -94,7 +94,6 @@ export default {
         labels: stock[0].labels,
       };
 
-      // console.log(this.chartData);
       this.loaded = true;
     });
   },
@@ -102,7 +101,7 @@ export default {
     purchase(stock) {
       axios({
         method: "POST",
-        url: config.url + "/purchase",
+        url: process.env.VUE_APP_SERVER + "/purchase",
         data: {
           id: this.id,
           name: stock.label,
@@ -121,7 +120,7 @@ export default {
     sell(stock) {
       axios({
         method: "POST",
-        url: config.url + "/sell",
+        url: process.env.VUE_APP_SERVER + "/sell",
         data: {
           id: this.id,
           name: stock.label,

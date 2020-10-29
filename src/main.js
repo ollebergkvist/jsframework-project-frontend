@@ -9,7 +9,7 @@ let config = require("./config/config");
 (function() {
   var domain = location.href.split("://");
 
-  config.url = "https://api.ollebergkvist.me";
+  config.url = process.env.VUE_APP_SERVER;
 
   if (domain[1].includes("localhost") || domain[1].includes("127.0.0.1")) {
     config.url = "http://localhost:1337";
