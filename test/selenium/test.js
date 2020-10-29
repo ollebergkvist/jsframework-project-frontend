@@ -112,7 +112,8 @@ test.describe("Test suite me-vue-app", function() {
 
   // Test case
   test.it("Test register route", function(done) {
-    matchUrl("/");
+    goToNavLink("Register");
+    matchUrl("/register");
     assertH4("Register account");
     done();
   });
