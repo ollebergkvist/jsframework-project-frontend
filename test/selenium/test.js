@@ -35,14 +35,14 @@ async function assertH4(target) {
 test.describe("Test suite me-vue-app", function() {
   this.timeout(0);
 
-  test.beforeEach(async function(done) {
+  test.beforeEach(function(done) {
     browser = new webdriver.Builder()
       .withCapabilities(webdriver.Capabilities.firefox())
       .setFirefoxOptions(new firefox.Options().headless())
       .forBrowser("firefox")
       .build();
 
-    await browser.get("http://localhost:8082/");
+    browser.get("http://localhost:8082/");
     done();
   });
 
@@ -63,7 +63,7 @@ test.describe("Test suite me-vue-app", function() {
       await element.sendKeys(email, Key.RETURN);
 
       const element2 = await browser.findElement(By.id("input-2"));
-      await element2.sendKeys(password);
+      await element2.sendKeys(password, Key.RETURN);
 
       const element3 = await browser.findElement(By.id("login"));
       await element3.click();
@@ -117,6 +117,12 @@ test.describe("Test suite me-vue-app", function() {
     done();
   });
 
+  // Test case #4
+  test.it("Test sign in", function(done) {
+    signin();
+    done();
+  });
+
   // Test case #2
   test.it("Test register route", function(done) {
     goToNavLink("Register");
@@ -129,12 +135,6 @@ test.describe("Test suite me-vue-app", function() {
   test.it("Test to register account", function(done) {
     goToNavLink("Register");
     register();
-    done();
-  });
-
-  // Test case #4
-  test.it("Test sign in", function(done) {
-    signin();
     done();
   });
 
