@@ -110,14 +110,14 @@ test.describe("Test suite me-vue-app", function() {
     assert.ok(deposit);
   }
 
-  // Test case
+  // Test case #1
   test.it("Test index route", function(done) {
     matchUrl("/");
     assertH4("Log in");
     done();
   });
 
-  // Test case
+  // Test case #2
   test.it("Test register route", function(done) {
     goToNavLink("Register");
     matchUrl("/register");
@@ -125,23 +125,23 @@ test.describe("Test suite me-vue-app", function() {
     done();
   });
 
-  // Test case
+  // Test case #3
   test.it("Test to register account", function(done) {
     goToNavLink("Register");
     register();
     done();
   });
 
-  // Test case
+  // Test case #4
   test.it("Test sign in", function(done) {
     signin();
     done();
   });
 
-  // Test case
-  test.it("Test signin and find dashboard links", function(done) {
-    signin();
-    dashboardLinks();
-    done();
-  });
+  // Test case #5
+  // test.it("Test signin and find dashboard links", function(done) {
+  //   signin();
+  //   dashboardLinks();
+  //   done();
+  // });
 });
