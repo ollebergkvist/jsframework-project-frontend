@@ -62,14 +62,13 @@ test.describe("Test suite me-vue-app", function() {
   // Test functions
   function signin() {
     let email = "test@test.test";
-
     let password = "test";
 
-    browser.findElement(By.name("email")).then(function(element) {
+    browser.findElement(By.id("input-1")).then(function(element) {
       element.sendKeys(email);
     });
 
-    browser.findElement(By.name("password")).then(function(element) {
+    browser.findElement(By.id("input-2")).then(function(element) {
       element.sendKeys(password);
     });
 
@@ -94,13 +93,13 @@ test.describe("Test suite me-vue-app", function() {
   });
 
   // Test case
-  test.it("Test sign in and sign out", function(done) {
+  test.it("Test signin and signout", function(done) {
     signin();
 
     browser.findElement(By.linkText("Logout")).then(function(element) {
       element.click();
     });
-    assertH1("Log in");
+    assertH4("Log in");
     done();
   });
 });
