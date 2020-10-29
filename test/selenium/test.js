@@ -64,7 +64,7 @@ test.describe("Test suite me-vue-app", function() {
       element.sendKeys(password);
     });
 
-    browser.findElement(By.id("button")).then(function(element) {
+    browser.findElement(By.id("login")).then(function(element) {
       element.click();
     });
   }
