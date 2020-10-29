@@ -112,42 +112,49 @@ test.describe("Test suite me-vue-app", function() {
 
   // Test case
   test.it("Test register route", function(done) {
-    goToNavLink("Register");
-    matchUrl("/register");
-    register();
-    assertH4("Log in");
+    matchUrl("/");
+    assertH4("Register account");
     done();
   });
 
-  // Test case
-  test.it("Test sign in", function(done) {
-    signin();
-    assertH4("Account");
-    done();
-  });
+  // // Test case
+  // test.it("Test to register account", function(done) {
+  //   goToNavLink("Register");
+  //   matchUrl("/register");
+  //   register();
+  //   assertH4("Log in");
+  //   done();
+  // });
 
-  // Test case
-  test.it("Test sign in and sign out", function(done) {
-    signin();
-    signout();
-    assertH4("Log in");
-    done();
-  });
+  // // Test case
+  // test.it("Test sign in", function(done) {
+  //   signin();
+  //   assertH4("Account");
+  //   done();
+  // });
 
-  // Test case
-  test.it("Test signin and dashboard links", function(done) {
-    signin();
+  // // Test case
+  // test.it("Test sign in and sign out", function(done) {
+  //   signin();
+  //   signout();
+  //   assertH4("Log in");
+  //   done();
+  // });
 
-    let account = browser.findElement(By.linkText("Account"));
-    let portfolio = browser.findElement(By.linkText("Portfolio"));
-    let stocks = browser.findElement(By.linkText("Stocks"));
-    let deposit = browser.findElement(By.linkText("Deposit"));
+  // // Test case
+  // test.it("Test signin and dashboard links", function(done) {
+  //   signin();
 
-    assert.ok(account);
-    assert.ok(portfolio);
-    assert.ok(stocks);
-    assert.ok(deposit);
+  //   let account = browser.findElement(By.linkText("Account"));
+  //   let portfolio = browser.findElement(By.linkText("Portfolio"));
+  //   let stocks = browser.findElement(By.linkText("Stocks"));
+  //   let deposit = browser.findElement(By.linkText("Deposit"));
 
-    done();
-  });
+  //   assert.ok(account);
+  //   assert.ok(portfolio);
+  //   assert.ok(stocks);
+  //   assert.ok(deposit);
+
+  //   done();
+  // });
 });
