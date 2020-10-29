@@ -46,8 +46,8 @@ test.describe("Test suite me-vue-app", function() {
     done();
   });
 
-  afterEach(async function(done) {
-    await browser.quit();
+  afterEach(function(done) {
+    browser.quit();
     done();
   });
 
@@ -75,11 +75,11 @@ test.describe("Test suite me-vue-app", function() {
   }
 
   // Test functions
-  function signout() {
-    browser.findElement(By.id("logout")).then(function(element) {
-      element.click();
-    });
-  }
+  // function signout() {
+  //   browser.findElement(By.id("logout")).then(function(element) {
+  //     element.click();
+  //   });
+  // }
 
   // function register() {
   //   let email = "test123@test.gmail.com";
