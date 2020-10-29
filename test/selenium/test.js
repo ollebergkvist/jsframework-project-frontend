@@ -77,7 +77,7 @@ test.describe("Test suite me-vue-app", function() {
   }
 
   function register() {
-    let email = "test2@test.test";
+    let email = "test123@test.gmail.com";
     let password = "testtest";
     let firstname = "test";
     let lastname = "test";
@@ -98,7 +98,7 @@ test.describe("Test suite me-vue-app", function() {
       element.sendKeys(lastname);
     });
 
-    browser.findElement(By.css("button")).then(function(element) {
+    browser.findElement(By.id("button")).then(function(element) {
       element.click();
     });
   }
@@ -118,14 +118,13 @@ test.describe("Test suite me-vue-app", function() {
     done();
   });
 
-  // // Test case
-  // test.it("Test to register account", function(done) {
-  //   goToNavLink("Register");
-  //   matchUrl("/register");
-  //   register();
-  //   assertH4("Log in");
-  //   done();
-  // });
+  // Test case
+  test.it("Test to register account", function(done) {
+    goToNavLink("Register");
+    register();
+    assertH4("Log in");
+    done();
+  });
 
   // // Test case
   // test.it("Test sign in", function(done) {

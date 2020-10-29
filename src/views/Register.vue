@@ -61,7 +61,7 @@
       <div v-if="flagError">
         <p class="error">Please enter a valid email address.</p>
       </div>
-      <b-button class="btn-block" type="submit" variant="primary"
+      <b-button id="button" class="btn-block" type="submit" variant="primary"
         >Register</b-button
       >
     </b-form>
