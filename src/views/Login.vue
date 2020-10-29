@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h4>Log in</h4>
+    <h4 id="h4-login">Log in</h4>
     <b-form v-on:submit.prevent="getFormValues">
       <b-form-group
         id="input-group-1"

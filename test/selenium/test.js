@@ -74,12 +74,11 @@ test.describe("Test suite me-vue-app", function() {
     }
   }
 
-  // Test functions
-  // function signout() {
-  //   browser.findElement(By.id("logout")).then(function(element) {
-  //     element.click();
-  //   });
-  // }
+  async function signout() {
+    await browser.findElement(By.id("logout")).then(function(element) {
+      element.click();
+    });
+  }
 
   // function register() {
   //   let email = "test123@test.gmail.com";
@@ -137,13 +136,13 @@ test.describe("Test suite me-vue-app", function() {
     done();
   });
 
-  // // Test case
-  // test.it("Test sign in and sign out", function(done) {
-  //   signin();
-  //   signout();
-  //   assertH4("Log in");
-  //   done();
-  // });
+  // Test case
+  test.it("Test sign in and sign out", function(done) {
+    signin();
+    signout();
+    browser.wait(until.elementLocated(By.id("h4-login")));
+    done();
+  });
 
   // // Test case
   // test.it("Test signin and dashboard links", function(done) {
