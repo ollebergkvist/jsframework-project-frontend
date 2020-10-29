@@ -75,20 +75,18 @@ test.describe("Test suite me-vue-app", function() {
   }
 
   async function register() {
-    let email = "test123@test.gmail.com";
+    let email = "test12345@gmail.com";
     let password = "testtest";
     let firstname = "test";
     let lastname = "test";
 
     const element = await browser.findElement(By.id("input-1"));
-    element.sendKeys(email);
+    await element.sendKeys(email);
 
     const element2 = await browser.findElement(By.id("input-2"));
-
     await element2.sendKeys(password, Key.RETURN);
 
     const element3 = await browser.findElement(By.id("input-3"));
-
     await element3.sendKeys(firstname);
 
     const element4 = await browser.findElement(By.id("input-4"));
@@ -98,6 +96,18 @@ test.describe("Test suite me-vue-app", function() {
     await element5.click();
 
     browser.wait(until.elementLocated(By.id("h4-login")));
+  }
+
+  async function dashboardLinks() {
+    let account = await browser.findElement(By.linkText("Account"));
+    let portfolio = await browser.findElement(By.linkText("Portfolio"));
+    let stocks = await browser.findElement(By.linkText("Stocks"));
+    let deposit = await browser.findElement(By.linkText("Deposit"));
+
+    assert.ok(account);
+    assert.ok(portfolio);
+    assert.ok(stocks);
+    assert.ok(deposit);
   }
 
   // Test case
@@ -129,19 +139,9 @@ test.describe("Test suite me-vue-app", function() {
   });
 
   // Test case
-  test.it("Test signin and dashboard links", function(done) {
+  test.it("Test signin and find dashboard links", function(done) {
     signin();
-
-    let account = await browser.findElement(By.linkText("Account"));
-    let portfolio = await browser.findElement(By.linkText("Portfolio"));
-    let stocks = await browser.findElement(By.linkText("Stocks"));
-    let deposit = await browser.findElement(By.linkText("Deposit"));
-
-    assert.ok(account);
-    assert.ok(portfolio);
-    assert.ok(stocks);
-    assert.ok(deposit);
-
+    dashboardLinks();
     done();
   });
 });
