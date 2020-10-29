@@ -76,6 +76,33 @@ test.describe("Test suite me-vue-app", function() {
     });
   }
 
+  function register() {
+    let email = "test2@test.test";
+    let password = "testtest";
+    let firstname = "test";
+    let lastname = "test";
+
+    browser.findElement(By.id("input-1")).then(function(element) {
+      element.sendKeys(email);
+    });
+
+    browser.findElement(By.id("input-2")).then(function(element) {
+      element.sendKeys(password);
+    });
+
+    browser.findElement(By.id("input-3")).then(function(element) {
+      element.sendKeys(firstname);
+    });
+
+    browser.findElement(By.id("input-4")).then(function(element) {
+      element.sendKeys(lastname);
+    });
+
+    browser.findElement(By.css("button")).then(function(element) {
+      element.click();
+    });
+  }
+
   // Test case
   test.it("Test index route", function(done) {
     matchUrl("/");
@@ -85,20 +112,22 @@ test.describe("Test suite me-vue-app", function() {
 
   // Test case
   test.it("Test register route", function(done) {
+    goToNavLink("Register");
     matchUrl("/register");
-    assertH4("Register");
+    register();
+    assertH4("Log in");
     done();
   });
 
   // Test case
-  test.it("Test signin", function(done) {
+  test.it("Test sign in", function(done) {
     signin();
     assertH4("Account");
     done();
   });
 
   // Test case
-  test.it("Test signin and signout", function(done) {
+  test.it("Test sign in and sign out", function(done) {
     signin();
     signout();
     assertH4("Log in");

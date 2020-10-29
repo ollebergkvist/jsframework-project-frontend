@@ -23,8 +23,8 @@
         Account created:
         {{ formattedDate }}
       </p>
-      <p v-if="!user.balance">Balance: 0 SEK</p>
-      <p v-else>Balance: {{ user.balance.toFixed(2) }} SEK</p>
+      <p v-if="!user.balance">Balance: 0 USD</p>
+      <p v-else>Balance: {{ user.balance.toFixed(2) }} USD</p>
     </div>
 
     <div class="divider"></div>
