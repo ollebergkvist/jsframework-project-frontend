@@ -74,19 +74,8 @@ test.describe("Test suite me-vue-app", function() {
     }
   }
 
-  async function signout() {
-    try {
-      const element = await browser.findElement(By.id("link-logout"));
-      await element.click();
-
-      browser.wait(until.elementLocated(By.id("h4-login")));
-    } catch (err) {
-      console.log(err);
-    }
-  }
-
   async function register() {
-    let email = "test123@test.test";
+    let email = "test1234@test.test";
     let password = "testtest";
     let firstname = "test";
     let lastname = "test";
@@ -143,9 +132,11 @@ test.describe("Test suite me-vue-app", function() {
   });
 
   // Test case
-  // test.it("Test sign in and sign out", function(done) {
-  //   signin();
-  //   signout();
-  //   done();
-  // });
+  test.it("Test sign in and navigate to Deposit", function(done) {
+    signin();
+    goToNavLink("Deposit");
+    matchUrl("/deposit");
+    assertH4("Deposit money");
+    done();
+  });
 });
