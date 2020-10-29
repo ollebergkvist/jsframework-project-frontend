@@ -75,11 +75,14 @@ test.describe("Test suite me-vue-app", function() {
   }
 
   async function signout() {
-    await browser.findElement(By.id("logout")).then(function(element) {
-      element.click();
-    });
+    try {
+      const element = await browser.findElement(By.id("link-logout"));
+      await element.click();
 
-    browser.wait(until.elementLocated(By.id("h4-login")));
+      browser.wait(until.elementLocated(By.id("h4-login")));
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   async function register() {

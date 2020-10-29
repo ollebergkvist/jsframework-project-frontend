@@ -28,7 +28,9 @@
     </div>
 
     <div class="divider"></div>
-    <router-link to="/" id="logout" class="logout-link">Logout</router-link>
+    <router-link to="/" id="link-logout" class="logout-link"
+      >Logout</router-link
+    >
   </div>
 </template>
 
