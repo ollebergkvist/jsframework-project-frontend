@@ -128,7 +128,7 @@ test.describe("Test suite me-vue-app", function() {
 
   // Test case
   test.it("Test sign in", function(done) {
-    goToNavLink("Log in");
+    goToNavLink("Login");
     signin();
     assertH4("Account");
     done();
