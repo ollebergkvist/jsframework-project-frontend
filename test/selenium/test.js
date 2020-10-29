@@ -59,24 +59,48 @@ test.describe("Test suite me-vue-app", function() {
     done();
   });
 
+  // Test functions
+  function signin() {
+    let email = "test@test.test";
+
+    let password = "test";
+
+    browser.findElement(By.name("email")).then(function(element) {
+      element.sendKeys(email);
+    });
+
+    browser.findElement(By.name("password")).then(function(element) {
+      element.sendKeys(password);
+    });
+
+    browser.findElement(By.css("button")).then(function(element) {
+      element.click();
+    });
+  }
+
   // Test case
   test.it("Test index route", function(done) {
     matchUrl("/");
-    assertH1("JSRAMVERK APP");
-    done();
-  });
-
-  test.it("Test reports route", function(done) {
-    goToNavLink("Reports");
-    matchUrl("/reports");
-    assertH1("REPORTS");
-    done();
-  });
-
-  test.it("Test login route", function(done) {
-    goToNavLink("Login");
-    matchUrl("/login");
     assertH4("Log in");
+    done();
+  });
+
+  // Test case
+  test.it("Test signin", function(done) {
+    signin();
+    matchUrl("/");
+    assertH4("Account");
+    done();
+  });
+
+  // Test case
+  test.it("Test sign in and sign out", function(done) {
+    signin();
+
+    browser.findElement(By.linkText("Logout")).then(function(element) {
+      element.click();
+    });
+    assertH1("Log in");
     done();
   });
 });
