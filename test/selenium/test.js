@@ -8,7 +8,6 @@ const test = require("selenium-webdriver/testing");
 const firefox = require("selenium-webdriver/firefox");
 const webdriver = require("selenium-webdriver");
 const By = webdriver.By;
-
 let browser;
 
 async function goToNavLink(target) {
@@ -53,14 +52,12 @@ test.describe("Test suite me-vue-app", function() {
 
   // Test functions
   async function signin() {
-    let email = "test@test.test";
-    let password = "testtest";
+    const email = "test@test.test";
+    const password = "testtest";
 
     try {
-      goToNavLink("Login");
-
       const element = await browser.findElement(By.id("input-1"));
-      await element.sendKeys(email, Key.RETURN);
+      await element.sendKeys(email);
 
       const element2 = await browser.findElement(By.id("input-2"));
       await element2.sendKeys(password);
@@ -98,17 +95,17 @@ test.describe("Test suite me-vue-app", function() {
     browser.wait(until.elementLocated(By.id("h4-login")));
   }
 
-  async function dashboardLinks() {
-    let account = await browser.findElement(By.linkText("Account"));
-    let portfolio = await browser.findElement(By.linkText("Portfolio"));
-    let stocks = await browser.findElement(By.linkText("Stocks"));
-    let deposit = await browser.findElement(By.linkText("Deposit"));
+  // async function dashboardLinks() {
+  //   let account = await browser.findElement(By.linkText("Account"));
+  //   let portfolio = await browser.findElement(By.linkText("Portfolio"));
+  //   let stocks = await browser.findElement(By.linkText("Stocks"));
+  //   let deposit = await browser.findElement(By.linkText("Deposit"));
 
-    assert.ok(account);
-    assert.ok(portfolio);
-    assert.ok(stocks);
-    assert.ok(deposit);
-  }
+  //   assert.ok(account);
+  //   assert.ok(portfolio);
+  //   assert.ok(stocks);
+  //   assert.ok(deposit);
+  // }
 
   // Test case #1
   test.it("Test index route", function(done) {
@@ -125,16 +122,16 @@ test.describe("Test suite me-vue-app", function() {
     done();
   });
 
+  // Test case #4
+  test.it("Test sign in", function(done) {
+    signin();
+    done();
+  });
+
   // Test case #3
   test.it("Test to register account", function(done) {
     goToNavLink("Register");
     register();
-    done();
-  });
-
-  // Test case #4
-  test.it("Test sign in", function(done) {
-    signin();
     done();
   });
 
