@@ -9,7 +9,6 @@ let browser;
 
 test.describe("Route /login", function() {
   test.beforeEach(function(done) {
-    this.timeout(10000);
     browser = new webdriver.Builder()
       .forBrowser("firefox")
       .setFirefoxOptions(
