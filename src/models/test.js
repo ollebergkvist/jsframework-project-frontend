@@ -1,5 +1,5 @@
 const webdriver = require("selenium-webdriver");
-const chrome = require("selenium-webdriver/firefox");
+const firefox = require("selenium-webdriver/firefox");
 
 const testConfig = {
   url: "https://app-trading.ollebergkvist.me/",
