@@ -22,7 +22,6 @@ test.describe("Route /login", function() {
 
   test.afterEach(function(done) {
     browser.quit();
-
     done();
   });
 
