@@ -2,7 +2,7 @@
 
 const test = require("selenium-webdriver/testing");
 const webdriver = require("selenium-webdriver");
-const TestUtils = require("../src/models/test.js");
+const TestUtils = require("../../src/models/test");
 
 test.describe("Route /login", function() {
   let browser;
