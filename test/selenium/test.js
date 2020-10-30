@@ -75,7 +75,7 @@ test.describe("Test suite me-vue-app", function() {
       await element3.click();
 
       browser.wait(until.elementLocated(By.id("h4-account")));
-      await takeScreenshot(driver, "login.png");
+      await takeScreenshot("login.png");
     } catch (err) {
       console.log(err);
     }
@@ -120,15 +120,17 @@ test.describe("Test suite me-vue-app", function() {
   // Test case #1
 
   // Test case #4
-  test.it("Test sign in", function(done) {
-    login();
-    done();
-  });
-  // test.it("Test index route", function(done) {
-  //   matchUrl("/");
-  //   assertH4("Log in");
+  // test.it("Test sign in", function(done) {
+  //   login();
   //   done();
   // });
+
+  test.it("Test index route", function(done) {
+    matchUrl("/");
+    assertH4("Log in");
+    await takeScreenshot("index.png");
+    done();
+  });
 
   // // Test case #2
   // test.it("Test register route", function(done) {
