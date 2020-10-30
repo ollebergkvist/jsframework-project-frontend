@@ -1,15 +1,17 @@
 const assert = require("assert");
 const test = require("selenium-webdriver/testing");
+const firefox = require("selenium-webdriver/firefox");
 const webdriver = require("selenium-webdriver");
-const By = require("selenium-webdriver").By;
+const By = webdriver.By;
 
 let browser;
 
 test.describe("Me-page", async function() {
   test.beforeEach(async function(done) {
-    await this.timeout(20000);
-    browser = await new webdriver.Builder()
-      .withCapabilities(webdriver.Capabilities.chrome())
+    browser = new webdriver.Builder()
+      .withCapabilities(webdriver.Capabilities.firefox())
+      .setFirefoxOptions(new firefox.Options().headless())
+      .forBrowser("firefox")
       .build();
 
     await browser.get("https://app-trading.ollebergkvist.me");
