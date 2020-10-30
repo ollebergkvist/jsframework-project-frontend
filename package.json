@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "SELENIUM_BROWSER='chrome' SELENIUM_REMOTE_URL='http://app-trading.ollebergkvist.me'",
+    "start": "SELENIUM_BROWSER='chrome' SELENIUM_REMOTE_URL='http://localhost:9515'",
     "test-command": "mocha 'test/selenium/test3.js'",
     "test": "npm start & npm run test-command",
     "serve": "vue-cli-service serve",
