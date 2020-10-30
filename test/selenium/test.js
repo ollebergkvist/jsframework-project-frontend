@@ -8,6 +8,7 @@ const test = require("selenium-webdriver/testing");
 const firefox = require("selenium-webdriver/firefox");
 const webdriver = require("selenium-webdriver");
 const By = webdriver.By;
+const url = "https://app-trading.ollebergkvist.me/";
 
 var browser;
 
@@ -108,7 +109,7 @@ test.describe("Test suite me-vue-app", async function() {
       .forBrowser("firefox")
       .build();
 
-    await browser.get("https://trading-app.ollebergkvist.me/");
+    await browser.get(url);
     await done();
   });
 
