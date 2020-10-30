@@ -7,13 +7,6 @@ const webdriver = require("selenium-webdriver");
 const { Builder, By, until } = require("selenium-webdriver");
 let browser;
 
-const testUtils = {
-  url: "https://app-trading.ollebergkvist.me/",
-  getWebdriverWithPredefOpts: function() {
-    return new webdriver.Builder();
-  },
-};
-
 test.describe("Route /login", function() {
   test.beforeEach(function(done) {
     this.timeout(10000);
@@ -24,7 +17,7 @@ test.describe("Route /login", function() {
       )
       .build();
 
-    browser.get("https://trading-app.ollebergkvist.me");
+    browser.get("https://app-trading.ollebergkvist.me");
     done();
   });
 
