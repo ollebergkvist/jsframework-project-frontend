@@ -41,10 +41,8 @@ async function assertH4(target) {
 
 // Test suite
 test.describe("Test suite me-vue-app", function() {
-  this.timeout(0);
-
   test.beforeEach(async function(done) {
-    browser = new webdriver.Builder()
+    browser = await new webdriver.Builder()
       .withCapabilities(webdriver.Capabilities.firefox())
       .setFirefoxOptions(new firefox.Options().headless().windowSize(screen))
       .forBrowser("firefox")
@@ -61,24 +59,21 @@ test.describe("Test suite me-vue-app", function() {
 
   // Test functions
   async function login() {
+    goToNavLink("Login");
     const email = "test@test.test";
     const password = "testtest";
 
-    try {
-      const element = await browser.findElement(By.name("email"));
-      await element.sendKeys(email);
+    const element = await browser.findElement(By.name("email"));
+    await element.sendKeys(email);
 
-      const element2 = await browser.findElement(By.name("password"));
-      await element2.sendKeys(password);
+    const element2 = await browser.findElement(By.name("password"));
+    await element2.sendKeys(password);
 
-      const element3 = await browser.findElement(By.id("login"));
-      await element3.click();
+    const element3 = await browser.findElement(By.id("login"));
+    await element3.click();
 
-      browser.wait(until.elementLocated(By.id("h4-account")));
-      await takeScreenshot("login.png");
-    } catch (err) {
-      console.log(err);
-    }
+    browser.wait(until.elementLocated(By.id("h4-account")));
+    await takeScreenshot("login.png");
   }
 
   async function register() {
