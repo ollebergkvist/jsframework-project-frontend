@@ -65,10 +65,10 @@ test.describe("Test suite me-vue-app", function() {
     const password = "testtest";
 
     try {
-      const element = await browser.findElement(By.id("input-1"));
+      const element = await browser.findElement(By.name("email"));
       await element.sendKeys(email);
 
-      const element2 = await browser.findElement(By.id("input-2"));
+      const element2 = await browser.findElement(By.name("password"));
       await element2.sendKeys(password);
 
       const element3 = await browser.findElement(By.id("login"));
@@ -105,25 +105,21 @@ test.describe("Test suite me-vue-app", function() {
     browser.wait(until.elementLocated(By.id("h4-login")));
   }
 
-  // async function dashboardLinks() {
-  //   let account = await browser.findElement(By.linkText("Account"));
-  //   let portfolio = await browser.findElement(By.linkText("Portfolio"));
-  //   let stocks = await browser.findElement(By.linkText("Stocks"));
-  //   let deposit = await browser.findElement(By.linkText("Deposit"));
+  async function navigationLinks() {
+    let login = await browser.findElement(By.linkText("Account"));
+    let register = await browser.findElement(By.linkText("Portfolio"));
 
-  //   assert.ok(account);
-  //   assert.ok(portfolio);
-  //   assert.ok(stocks);
-  //   assert.ok(deposit);
-  // }
+    assert.ok(login);
+    assert.ok(register);
+  }
 
   // Test case #1
-  test.it("Test index route", function(done) {
-    matchUrl("/");
-    assertH4("Log in");
-    takeScreenshot("index_route.png");
-    done();
-  });
+  // test.it("Test index route", function(done) {
+  //   matchUrl("/");
+  //   assertH4("Log in");
+  //   takeScreenshot("index_route.png");
+  //   done();
+  // });
 
   // Test case #4
   test.it("Test sign in", function(done) {
@@ -133,26 +129,25 @@ test.describe("Test suite me-vue-app", function() {
   });
 
   // // Test case #2
-  test.it("Test register route", function(done) {
-    goToNavLink("Register");
-    matchUrl("/register");
-    assertH4("Register account");
-    takeScreenshot("register_route.png");
-    done();
-  });
+  // test.it("Test register route", function(done) {
+  //   goToNavLink("Register");
+  //   matchUrl("/register");
+  //   assertH4("Register account");
+  //   takeScreenshot("register_route.png");
+  //   done();
+  // });
 
-  // Test case #3
-  test.it("Test to register account", function(done) {
-    goToNavLink("Register");
-    register();
-    takeScreenshot("register_account.png");
-    done();
-  });
+  // // Test case #3
+  // test.it("Test to register account", function(done) {
+  //   goToNavLink("Register");
+  //   register();
+  //   takeScreenshot("register_account.png");
+  //   done();
+  // });
 
-  // Test case #5
-  // test.it("Test signin and find dashboard links", function(done) {
-  //   signin();
-  //   dashboardLinks();
+  // // Test case #5
+  // test.it("Test navbar", function(done) {
+  //   navigationLinks();
   //   done();
   // });
 });

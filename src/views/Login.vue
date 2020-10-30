@@ -10,6 +10,7 @@
       >
         <b-form-input
           id="input-1"
+          name="email"
           v-model="form.email"
           type="email"
           required
@@ -24,6 +25,7 @@
       >
         <b-form-input
           id="input-2"
+          name="password"
           v-model="form.password"
           type="password"
           required
