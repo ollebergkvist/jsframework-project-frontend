@@ -100,22 +100,22 @@ async function dashboardLinks() {
 }
 
 // Test suite
-test.describe("Test suite me-vue-app", async function() {
-  test.beforeEach(async function(done) {
-    await this.timeout(20000);
-    browser = await new webdriver.Builder()
+test.describe("Test suite me-vue-app", function() {
+  test.beforeEach(function(done) {
+    // await this.timeout(20000);
+    browser = new webdriver.Builder()
       .withCapabilities(webdriver.Capabilities.firefox())
       .setFirefoxOptions(new firefox.Options().headless())
       .forBrowser("firefox")
       .build();
 
-    await browser.get(url);
-    await done();
+    browser.get(url);
+    done();
   });
 
-  afterEach(async function(done) {
-    await browser.quit();
-    await done();
+  afterEach(function(done) {
+    browser.quit();
+    done();
   });
 
   // // Test case #1
