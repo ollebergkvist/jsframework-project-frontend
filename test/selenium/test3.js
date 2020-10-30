@@ -3,10 +3,9 @@
 const test = require("selenium-webdriver/testing");
 const webdriver = require("selenium-webdriver");
 const TestUtils = require("../../src/models/test");
+let browser;
 
 test.describe("Route /login", function() {
-  let browser;
-
   test.beforeEach(function(done) {
     this.timeout(10000);
 
@@ -33,7 +32,7 @@ test.describe("Route /login", function() {
     let formEl = browser.findElement(webdriver.By.id("login"));
     formEl.submit();
 
-    browser.wait(until.elementLocated(By.id("h4-account")), 5000);
+    browser.wait(until.elementLocated(By.id("h4-account")));
 
     done();
   });

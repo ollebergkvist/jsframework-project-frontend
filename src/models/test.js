@@ -1,7 +1,7 @@
 const webdriver = require("selenium-webdriver");
 const firefox = require("selenium-webdriver/firefox");
 
-const testConfig = {
+const testUtils = {
   url: "https://app-trading.ollebergkvist.me/",
   getWebdriverWithPredefOpts: function() {
     return new webdriver.Builder()
@@ -13,4 +13,4 @@ const testConfig = {
   },
 };
 
-module.exports = testConfig;
+module.exports = testUtils;
