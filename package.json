@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/http-server/bin/http-server -p 8082 dist",
-    "test-command": "mocha 'test/selenium/test2.js'",
+    "test-command": "mocha 'test/selenium/test.js'",
     "test": "npm start & npm run test-command",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
