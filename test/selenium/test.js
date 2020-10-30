@@ -9,6 +9,15 @@ const firefox = require("selenium-webdriver/firefox");
 const webdriver = require("selenium-webdriver");
 const By = webdriver.By;
 let browser;
+const screen = {
+  width: 1920,
+  height: 1080,
+};
+
+async function takeScreenshot(file) {
+  let image = await browser.takeScreenshot();
+  await fsp.writeFile(`./test/images/${file}`, image, "base64");
+}
 
 async function goToNavLink(target) {
   await browser.findElement(By.linkText(target)).then(function(element) {
@@ -37,7 +46,7 @@ test.describe("Test suite me-vue-app", function() {
   test.beforeEach(async function(done) {
     browser = new webdriver.Builder()
       .withCapabilities(webdriver.Capabilities.firefox())
-      .setFirefoxOptions(new firefox.Options().headless())
+      .setFirefoxOptions(new firefox.Options().headless().windowSize(screen))
       .forBrowser("firefox")
       .build();
 
@@ -51,7 +60,7 @@ test.describe("Test suite me-vue-app", function() {
   });
 
   // Test functions
-  async function signin() {
+  async function login() {
     const email = "test@test.test";
     const password = "testtest";
 
@@ -66,6 +75,7 @@ test.describe("Test suite me-vue-app", function() {
       await element3.click();
 
       browser.wait(until.elementLocated(By.id("h4-account")));
+      await takeScreenshot(driver, "login.png");
     } catch (err) {
       console.log(err);
     }
@@ -108,32 +118,32 @@ test.describe("Test suite me-vue-app", function() {
   // }
 
   // Test case #1
-  test.it("Test index route", function(done) {
-    matchUrl("/");
-    assertH4("Log in");
-    done();
-  });
-
-  // Test case #2
-  test.it("Test register route", function(done) {
-    goToNavLink("Register");
-    matchUrl("/register");
-    assertH4("Register account");
-    done();
-  });
 
   // Test case #4
   test.it("Test sign in", function(done) {
-    signin();
+    login();
     done();
   });
+  // test.it("Test index route", function(done) {
+  //   matchUrl("/");
+  //   assertH4("Log in");
+  //   done();
+  // });
+
+  // // Test case #2
+  // test.it("Test register route", function(done) {
+  //   goToNavLink("Register");
+  //   matchUrl("/register");
+  //   assertH4("Register account");
+  //   done();
+  // });
 
   // Test case #3
-  test.it("Test to register account", function(done) {
-    goToNavLink("Register");
-    register();
-    done();
-  });
+  // test.it("Test to register account", function(done) {
+  //   goToNavLink("Register");
+  //   register();
+  //   done();
+  // });
 
   // Test case #5
   // test.it("Test signin and find dashboard links", function(done) {
