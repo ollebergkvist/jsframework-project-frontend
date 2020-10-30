@@ -1,18 +1,30 @@
 "use strict";
 
+const assert = require("assert");
 const test = require("selenium-webdriver/testing");
+const firefox = require("selenium-webdriver/firefox");
+const webdriver = require("selenium-webdriver");
 const { Builder, By, until } = require("selenium-webdriver");
-const TestUtils = require("../../src/models/test");
 let browser;
+
+const testUtils = {
+  url: "https://app-trading.ollebergkvist.me/",
+  getWebdriverWithPredefOpts: function() {
+    return new webdriver.Builder();
+  },
+};
 
 test.describe("Route /login", function() {
   test.beforeEach(function(done) {
     this.timeout(10000);
+    browser = new webdriver.Builder()
+      .forBrowser("firefox")
+      .setFirefoxOptions(
+        new firefox.Options().headless().addArguments("--no-sandbox")
+      )
+      .build();
 
-    browser = TestUtils.getWebdriverWithPredefOpts();
-
-    browser.get(TestUtils.url);
-
+    browser.get("https://trading-app.ollebergkvist.me");
     done();
   });
 
