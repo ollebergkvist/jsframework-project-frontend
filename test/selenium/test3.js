@@ -35,7 +35,7 @@ test.describe("Route /login", function() {
     passwdElInp.sendKeys("testtest");
 
     let formEl = browser.findElement(webdriver.By.id("login"));
-    formEl.submit();
+    formEl.click();
 
     browser.wait(until.elementLocated(By.id("h4-account")));
 
