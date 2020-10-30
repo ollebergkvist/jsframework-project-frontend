@@ -1,7 +1,7 @@
 "use strict";
 
 const test = require("selenium-webdriver/testing");
-const webdriver = require("selenium-webdriver");
+const { Builder, By, until } = require("selenium-webdriver");
 const TestUtils = require("../../src/models/test");
 let browser;
 
