@@ -44,10 +44,10 @@ async function login() {
 
   try {
     const element = await browser.findElement(By.id("input-1"));
-    await element.sendKeys(email, Key.RETURN);
+    await element.sendKeys(email);
 
     const element2 = await browser.findElement(By.id("input-2"));
-    await element2.sendKeys(password, Key.RETURN);
+    await element2.sendKeys(password);
 
     const element3 = await browser.findElement(By.id("login"));
     await element3.click();
