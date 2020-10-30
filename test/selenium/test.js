@@ -118,34 +118,36 @@ test.describe("Test suite me-vue-app", function() {
   // }
 
   // Test case #1
-
-  // Test case #4
-  // test.it("Test sign in", function(done) {
-  //   login();
-  //   done();
-  // });
-
   test.it("Test index route", function(done) {
     matchUrl("/");
     assertH4("Log in");
-    await takeScreenshot("index.png");
+    takeScreenshot("index_route.png");
+    done();
+  });
+
+  // Test case #4
+  test.it("Test sign in", function(done) {
+    login();
+    takeScreenshot("login.png");
     done();
   });
 
   // // Test case #2
-  // test.it("Test register route", function(done) {
-  //   goToNavLink("Register");
-  //   matchUrl("/register");
-  //   assertH4("Register account");
-  //   done();
-  // });
+  test.it("Test register route", function(done) {
+    goToNavLink("Register");
+    matchUrl("/register");
+    assertH4("Register account");
+    takeScreenshot("register_route.png");
+    done();
+  });
 
   // Test case #3
-  // test.it("Test to register account", function(done) {
-  //   goToNavLink("Register");
-  //   register();
-  //   done();
-  // });
+  test.it("Test to register account", function(done) {
+    goToNavLink("Register");
+    register();
+    takeScreenshot("register_account.png");
+    done();
+  });
 
   // Test case #5
   // test.it("Test signin and find dashboard links", function(done) {
