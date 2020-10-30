@@ -9,6 +9,10 @@ const firefox = require("selenium-webdriver/firefox");
 const webdriver = require("selenium-webdriver");
 const By = webdriver.By;
 const url = "https://app-trading.ollebergkvist.me/";
+const screen = {
+  width: 1920,
+  height: 1080,
+};
 
 var browser;
 
@@ -100,17 +104,17 @@ async function dashboardLinks() {
 }
 
 // Test suite
-test.describe("Test suite me-vue-app", function() {
-  test.beforeEach(function(done) {
-    // await this.timeout(20000);
-    browser = new webdriver.Builder()
+test.describe("Test suite me-vue-app", async function() {
+  await this.timeout(20000);
+  test.beforeEach(async function(done) {
+    browser = await new webdriver.Builder()
       .withCapabilities(webdriver.Capabilities.firefox())
-      .setFirefoxOptions(new firefox.Options().headless())
+      .setFirefoxOptions(new firefox.Options().headless().windowSize(screen))
       .forBrowser("firefox")
       .build();
 
-    browser.get(url);
-    done();
+    await browser.get(url);
+    await done();
   });
 
   afterEach(function(done) {
