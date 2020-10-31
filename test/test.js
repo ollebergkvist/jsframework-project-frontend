@@ -100,13 +100,6 @@ test.describe("Test suite me-vue-app", function() {
     done();
   });
 
-  // Test case #3
-  test.it("Test to register account", function(done) {
-    goToNavLink("Register");
-    register();
-    done();
-  });
-
   // // Test case #4
   test.it("Test navbar", function(done) {
     navigationLinks();
@@ -117,6 +110,12 @@ test.describe("Test suite me-vue-app", function() {
   test.it("Test to find logtype", function(done) {
     const logotype = browser.findElement(By.id("logotype"));
     assert(logotype);
+    done();
+  });
+  // Test case #3
+  test.it("Test to register account", function(done) {
+    goToNavLink("Register");
+    register();
     done();
   });
 });
