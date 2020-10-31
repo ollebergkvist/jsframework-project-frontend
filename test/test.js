@@ -8,7 +8,7 @@ const test = require("selenium-webdriver/testing");
 const firefox = require("selenium-webdriver/firefox");
 const webdriver = require("selenium-webdriver");
 const By = webdriver.By;
-var browser;
+let browser;
 
 async function goToNavLink(target) {
   await browser.findElement(By.linkText(target)).then(function(element) {
@@ -33,6 +33,7 @@ async function assertH4(target) {
 // Test suite
 test.describe("Test suite me-vue-app", function() {
   test.beforeEach(function(done) {
+    this.timeout(20000);
     browser = new webdriver.Builder()
       .withCapabilities(webdriver.Capabilities.firefox())
       .setFirefoxOptions(new firefox.Options().headless())
@@ -48,55 +49,55 @@ test.describe("Test suite me-vue-app", function() {
     done();
   });
 
-  // Test functions
-  async function login() {
-    goToNavLink("Login");
-    const email = "test@test.test";
-    const password = "testtest";
+  // // Test functions
+  // async function login() {
+  //   goToNavLink("Login");
+  //   const email = "test@test.test";
+  //   const password = "testtest";
 
-    const element = await browser.findElement(By.name("email"));
-    await element.sendKeys(email);
+  //   const element = await browser.findElement(By.name("email"));
+  //   await element.sendKeys(email);
 
-    const element2 = await browser.findElement(By.name("password"));
-    await element2.sendKeys(password);
+  //   const element2 = await browser.findElement(By.name("password"));
+  //   await element2.sendKeys(password);
 
-    const element3 = await browser.findElement(By.id("login"));
-    await element3.click();
+  //   const element3 = await browser.findElement(By.id("login"));
+  //   await element3.click();
 
-    browser.wait(until.elementLocated(By.id("h4-account")));
-  }
+  //   browser.wait(until.elementLocated(By.id("h4-account")));
+  // }
 
-  async function register() {
-    let email = "test12345@gmail.com";
-    let password = "testtest";
-    let firstname = "test";
-    let lastname = "test";
+  // async function register() {
+  //   let email = "test12345@gmail.com";
+  //   let password = "testtest";
+  //   let firstname = "test";
+  //   let lastname = "test";
 
-    const element = await browser.findElement(By.id("input-1"));
-    await element.sendKeys(email);
+  //   const element = await browser.findElement(By.id("input-1"));
+  //   await element.sendKeys(email);
 
-    const element2 = await browser.findElement(By.id("input-2"));
-    await element2.sendKeys(password, Key.RETURN);
+  //   const element2 = await browser.findElement(By.id("input-2"));
+  //   await element2.sendKeys(password, Key.RETURN);
 
-    const element3 = await browser.findElement(By.id("input-3"));
-    await element3.sendKeys(firstname);
+  //   const element3 = await browser.findElement(By.id("input-3"));
+  //   await element3.sendKeys(firstname);
 
-    const element4 = await browser.findElement(By.id("input-4"));
-    await element4.sendKeys(lastname);
+  //   const element4 = await browser.findElement(By.id("input-4"));
+  //   await element4.sendKeys(lastname);
 
-    const element5 = browser.findElement(By.id("button"));
-    await element5.click();
+  //   const element5 = browser.findElement(By.id("button"));
+  //   await element5.click();
 
-    browser.wait(until.elementLocated(By.id("h4-login")));
-  }
+  //   browser.wait(until.elementLocated(By.id("h4-login")));
+  // }
 
-  async function navigationLinks() {
-    let login = await browser.findElement(By.linkText("Login"));
-    let register = await browser.findElement(By.linkText("Register"));
+  // async function navigationLinks() {
+  //   let login = await browser.findElement(By.linkText("Login"));
+  //   let register = await browser.findElement(By.linkText("Register"));
 
-    assert.ok(login);
-    assert.ok(register);
-  }
+  //   assert.ok(login);
+  //   assert.ok(register);
+  // }
 
   // Test case #1
   test.it("Test index route", function(done) {
