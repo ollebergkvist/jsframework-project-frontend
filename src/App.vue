@@ -2,6 +2,7 @@
   <div id="app">
     <a href="https://ollebergkvist.com">
       <img
+        id="logotype"
         alt="Olle Bergkvist logotype"
         width="100px"
         src="@/assets/logotype_white.svg"

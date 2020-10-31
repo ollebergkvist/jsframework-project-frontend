@@ -102,7 +102,7 @@ test.describe("Test suite me-vue-app", function() {
 
   async function getAltTag(target) {
     await browser
-      .findElement(By.tagName("img"))
+      .findElement(By.id("logotype"))
       .then(function(element) {
         element.getAttribute("alt");
       })
