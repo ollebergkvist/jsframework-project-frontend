@@ -56,10 +56,10 @@ test.describe("Test suite me-vue-app", function() {
     const email = "test@test.test";
     const password = "testtest";
 
-    const element = await browser.findElement(By.name("email"));
+    const element = await browser.findElement(By.id("input-1"));
     await element.sendKeys(email);
 
-    const element2 = await browser.findElement(By.name("password"));
+    const element2 = await browser.findElement(By.id("input-2"));
     await element2.sendKeys(password);
 
     const element3 = await browser.findElement(By.id("login"));
