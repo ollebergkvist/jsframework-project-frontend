@@ -7,6 +7,7 @@ const assert = require("assert");
 const test = require("selenium-webdriver/testing");
 const firefox = require("selenium-webdriver/firefox");
 const webdriver = require("selenium-webdriver");
+const { SpinnerPlugin } = require("bootstrap-vue");
 const By = webdriver.By;
 let browser;
 
@@ -51,22 +52,21 @@ test.describe("Test suite me-vue-app", function() {
   });
 
   // // Test functions
-  // async function login() {
-  //   goToNavLink("Login");
-  //   const email = "test@test.test";
-  //   const password = "testtest";
+  async function login() {
+    const email = "test@test.test";
+    const password = "testtest";
 
-  //   const element = await browser.findElement(By.name("email"));
-  //   await element.sendKeys(email);
+    const element = await browser.findElement(By.name("email"));
+    await element.sendKeys(email);
 
-  //   const element2 = await browser.findElement(By.name("password"));
-  //   await element2.sendKeys(password);
+    const element2 = await browser.findElement(By.name("password"));
+    await element2.sendKeys(password);
 
-  //   const element3 = await browser.findElement(By.id("login"));
-  //   await element3.click();
+    const element3 = await browser.findElement(By.id("login"));
+    await element3.click();
 
-  //   browser.wait(until.elementLocated(By.id("h4-account")));
-  // }
+    browser.wait(until.elementLocated(By.id("h4-account")));
+  }
 
   // async function register() {
   //   let email = "test12345@gmail.com";
@@ -142,7 +142,14 @@ test.describe("Test suite me-vue-app", function() {
 
   // Test case #4
   test.it("Test to get alt tag of logotype", function(done) {
-    getAltTag("Olle Bergkvist logotype");
+    const logotype = await browser.findElement(By.id("logotype"))
+    assert(logotype)
+    done();
+  });
+
+   // Test case #5
+   test.it("Test to sign in user", function(done) {
+    login();
     done();
   });
 
