@@ -91,13 +91,13 @@ test.describe("Test suite me-vue-app", function() {
   //   browser.wait(until.elementLocated(By.id("h4-login")));
   // }
 
-  // async function navigationLinks() {
-  //   let login = await browser.findElement(By.linkText("Login"));
-  //   let register = await browser.findElement(By.linkText("Register"));
+  async function navigationLinks() {
+    let login = await browser.findElement(By.linkText("Login"));
+    let register = await browser.findElement(By.linkText("Register"));
 
-  //   assert.ok(login);
-  //   assert.ok(register);
-  // }
+    assert.ok(login);
+    assert.ok(register);
+  }
 
   // Test case #1
   test.it("Test index route", function(done) {
@@ -115,10 +115,10 @@ test.describe("Test suite me-vue-app", function() {
   });
 
   // // Test case #3
-  // test.it("Test navbar", function(done) {
-  //   navigationLinks();
-  //   done();
-  // });
+  test.it("Test navbar", function(done) {
+    navigationLinks();
+    done();
+  });
 
   // // Test case #4
   // test.it("Test to register account", function(done) {
