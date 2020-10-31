@@ -11,6 +11,7 @@ const By = webdriver.By;
 
 let browser;
 
+// Helper functions
 async function goToNavLink(target) {
   await browser.findElement(By.linkText(target)).then(function(element) {
     element.click();
@@ -29,6 +30,14 @@ async function assertH4(target) {
       assert.equal(text, target);
     });
   });
+}
+
+async function navigationLinks() {
+  let login = await browser.findElement(By.linkText("Login"));
+  let register = await browser.findElement(By.linkText("Register"));
+
+  assert.ok(login);
+  assert.ok(register);
 }
 
 // Test suite
@@ -52,28 +61,6 @@ test.describe("Test suite me-vue-app", function() {
   });
 
   // Test functions
-  async function signin() {
-    let email = "test@test.test";
-    let password = "testtest";
-
-    try {
-      goToNavLink("Login");
-
-      const element = await browser.findElement(By.id("input-1"));
-      await element.sendKeys(email, Key.RETURN);
-
-      const element2 = await browser.findElement(By.id("input-2"));
-      await element2.sendKeys(password);
-
-      const element3 = await browser.findElement(By.id("login"));
-      await element3.click();
-
-      browser.wait(until.elementLocated(By.id("h4-account")));
-    } catch (err) {
-      console.log(err);
-    }
-  }
-
   async function register() {
     let email = "test12345@gmail.com";
     let password = "testtest";
@@ -98,18 +85,6 @@ test.describe("Test suite me-vue-app", function() {
     browser.wait(until.elementLocated(By.id("h4-login")));
   }
 
-  async function dashboardLinks() {
-    let account = await browser.findElement(By.linkText("Account"));
-    let portfolio = await browser.findElement(By.linkText("Portfolio"));
-    let stocks = await browser.findElement(By.linkText("Stocks"));
-    let deposit = await browser.findElement(By.linkText("Deposit"));
-
-    assert.ok(account);
-    assert.ok(portfolio);
-    assert.ok(stocks);
-    assert.ok(deposit);
-  }
-
   // Test case #1
   test.it("Test index route", function(done) {
     matchUrl("/");
@@ -132,16 +107,16 @@ test.describe("Test suite me-vue-app", function() {
     done();
   });
 
-  // Test case #4
-  test.it("Test sign in", function(done) {
-    signin();
+  // // Test case #4
+  test.it("Test navbar", function(done) {
+    navigationLinks();
     done();
   });
 
-  // Test case #5
-  // test.it("Test signin and find dashboard links", function(done) {
-  //   signin();
-  //   dashboardLinks();
-  //   done();
-  // });
+  // Test case #4
+  test.it("Test to find logtype", function(done) {
+    const logotype = browser.findElement(By.id("logotype"));
+    assert(logotype);
+    done();
+  });
 });
