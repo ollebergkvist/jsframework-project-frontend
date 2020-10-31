@@ -52,45 +52,45 @@ test.describe("Test suite me-vue-app", function() {
   });
 
   // // Test functions
-  async function login() {
-    const email = "test@test.test";
-    const password = "testtest";
-
-    const element = await browser.findElement(By.id("input-1"));
-    await element.sendKeys(email);
-
-    const element2 = await browser.findElement(By.id("input-2"));
-    await element2.sendKeys(password);
-
-    const element3 = await browser.findElement(By.id("login"));
-    await element3.click();
-
-    browser.wait(until.elementLocated(By.id("h4-account")));
-  }
-
-  // async function register() {
-  //   let email = "test12345@gmail.com";
-  //   let password = "testtest";
-  //   let firstname = "test";
-  //   let lastname = "test";
+  // async function login() {
+  //   const email = "test@test.test";
+  //   const password = "testtest";
 
   //   const element = await browser.findElement(By.id("input-1"));
   //   await element.sendKeys(email);
 
   //   const element2 = await browser.findElement(By.id("input-2"));
-  //   await element2.sendKeys(password, Key.RETURN);
+  //   await element2.sendKeys(password);
 
-  //   const element3 = await browser.findElement(By.id("input-3"));
-  //   await element3.sendKeys(firstname);
+  //   const element3 = await browser.findElement(By.id("login"));
+  //   await element3.click();
 
-  //   const element4 = await browser.findElement(By.id("input-4"));
-  //   await element4.sendKeys(lastname);
-
-  //   const element5 = browser.findElement(By.id("button"));
-  //   await element5.click();
-
-  //   browser.wait(until.elementLocated(By.id("h4-login")));
+  //   browser.wait(until.elementLocated(By.id("h4-account")));
   // }
+
+  // async function register() {
+    let email = "test12345@gmail.com";
+    let password = "testtest";
+    let firstname = "test";
+    let lastname = "test";
+
+    const element = await browser.findElement(By.id("input-1"));
+    await element.sendKeys(email);
+
+    const element2 = await browser.findElement(By.id("input-2"));
+    await element2.sendKeys(password, Key.RETURN);
+
+    const element3 = await browser.findElement(By.id("input-3"));
+    await element3.sendKeys(firstname);
+
+    const element4 = await browser.findElement(By.id("input-4"));
+    await element4.sendKeys(lastname);
+
+    const element5 = browser.findElement(By.id("button"));
+    await element5.click();
+
+    browser.wait(until.elementLocated(By.id("h4-login")));
+  }
 
   async function navigationLinks() {
     let login = await browser.findElement(By.linkText("Login"));
@@ -148,15 +148,15 @@ test.describe("Test suite me-vue-app", function() {
   });
 
   // Test case #5
-  test.it("Test to sign in user", function(done) {
-    login();
-    done();
-  });
-
-  // Test case #5
-  // test.it("Test to register account", function(done) {
-  //   goToNavLink("Register");
-  //   register();
+  // test.it("Test to sign in user", function(done) {
+  //   login();
   //   done();
   // });
+
+  // Test case #5
+  test.it("Test to register account", function(done) {
+    goToNavLink("Register");
+    register();
+    done();
+  });
 });
