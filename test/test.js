@@ -78,7 +78,7 @@ test.describe("Test suite me-vue-app", function() {
     await element.sendKeys(email);
 
     const element2 = await browser.findElement(By.id("input-2"));
-    await element2.sendKeys(password, Key.RETURN);
+    await element2.sendKeys(password);
 
     const element3 = await browser.findElement(By.id("input-3"));
     await element3.sendKeys(firstname);
