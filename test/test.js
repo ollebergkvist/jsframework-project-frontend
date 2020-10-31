@@ -142,8 +142,7 @@ test.describe("Test suite me-vue-app", function() {
 
   // Test case #4
   test.it("Test to get alt tag of logotype", function(done) {
-    let logotype = browser.findElement(By.id("logotype"));
-    assert(logotype);
+    getAltTag("Olle Bergkvist logotype");
     done();
   });
 
