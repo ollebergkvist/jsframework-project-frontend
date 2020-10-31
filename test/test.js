@@ -7,7 +7,7 @@ const assert = require("assert");
 const test = require("selenium-webdriver/testing");
 const firefox = require("selenium-webdriver/firefox");
 const webdriver = require("selenium-webdriver");
-const By = webdriver.By;
+const { Builder, By, until } = require("selenium-webdriver");
 
 let browser;
 
@@ -93,6 +93,8 @@ test.describe("Test suite me-vue-app", function() {
     const element = browser.findElement(By.id("logotype"));
     element.click();
     browser.wait(until.urlIs("https://www.ollebergkvist.com/"));
+
+    browser.wait(until.elementLocated(By.id("h4-account")));
     done();
   });
 });
