@@ -60,31 +60,6 @@ test.describe("Test suite me-vue-app", function() {
     done();
   });
 
-  // Test functions
-  async function register() {
-    let email = "test12345@gmail.com";
-    let password = "testtest";
-    let firstname = "test";
-    let lastname = "test";
-
-    const element = await browser.findElement(By.id("input-1"));
-    await element.sendKeys(email);
-
-    const element2 = await browser.findElement(By.id("input-2"));
-    await element2.sendKeys(password, Key.RETURN);
-
-    const element3 = await browser.findElement(By.id("input-3"));
-    await element3.sendKeys(firstname);
-
-    const element4 = await browser.findElement(By.id("input-4"));
-    await element4.sendKeys(lastname);
-
-    const element5 = browser.findElement(By.id("button"));
-    await element5.click();
-
-    browser.wait(until.elementLocated(By.id("h4-login")));
-  }
-
   // Test case #1
   test.it("Test index route", function(done) {
     matchUrl("/");
@@ -112,10 +87,12 @@ test.describe("Test suite me-vue-app", function() {
     assert(logotype);
     done();
   });
-  // Test case #3
-  test.it("Test to register account", function(done) {
-    goToNavLink("Register");
-    register();
+
+  // Test case #5
+  test.it("Test to find link to my website and that it works", function(done) {
+    const element = browser.findElement(By.id("logotype"));
+    element.click();
+    browser.wait(until.urlIs("https://www.ollebergkvist.com/"));
     done();
   });
 });
