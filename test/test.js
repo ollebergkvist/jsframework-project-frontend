@@ -52,23 +52,23 @@ test.describe("Test suite me-vue-app", function() {
   });
 
   // // Test functions
-  // async function login() {
-  //   const email = "test@test.test";
-  //   const password = "testtest";
+  async function login() {
+    const email = "test@test.test";
+    const password = "testtest";
 
-  //   const element = await browser.findElement(By.id("input-1"));
-  //   await element.sendKeys(email);
+    const element = await browser.findElement(By.id("input-1"));
+    await element.sendKeys(email);
 
-  //   const element2 = await browser.findElement(By.id("input-2"));
-  //   await element2.sendKeys(password);
+    const element2 = await browser.findElement(By.id("input-2"));
+    await element2.sendKeys(password);
 
-  //   const element3 = await browser.findElement(By.id("login"));
-  //   await element3.click();
+    const element3 = await browser.findElement(By.id("login"));
+    await element3.click();
 
-  //   browser.wait(until.elementLocated(By.id("h4-account")));
-  // }
+    browser.wait(until.elementLocated(By.id("h4-account")));
+  }
 
-  // async function register() {
+  async function register() {
     let email = "test12345@gmail.com";
     let password = "testtest";
     let firstname = "test";
