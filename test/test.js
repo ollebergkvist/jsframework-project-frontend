@@ -51,7 +51,7 @@ test.describe("Test suite me-vue-app", function() {
       .forBrowser("firefox")
       .build();
 
-    await browser.get("https://app-trading.ollebergkvist.me");
+    await browser.get("http://localhost:8082/");
     done();
   });
 
