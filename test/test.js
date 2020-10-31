@@ -134,6 +134,13 @@ test.describe("Test suite me-vue-app", function() {
     done();
   });
 
+  // Test case #5
+  test.it("Test to register account", function(done) {
+    goToNavLink("Register");
+    register();
+    done();
+  });
+
   // // Test case #3
   test.it("Test navbar", function(done) {
     navigationLinks();
@@ -152,11 +159,4 @@ test.describe("Test suite me-vue-app", function() {
   //   login();
   //   done();
   // });
-
-  // Test case #5
-  test.it("Test to register account", function(done) {
-    goToNavLink("Register");
-    register();
-    done();
-  });
 });
