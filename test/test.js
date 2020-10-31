@@ -93,8 +93,6 @@ test.describe("Test suite me-vue-app", function() {
     const element = browser.findElement(By.id("logotype"));
     element.click();
     browser.wait(until.urlIs("https://www.ollebergkvist.com/"));
-
-    browser.wait(until.elementLocated(By.id("h4-account")));
     done();
   });
 });
