@@ -142,13 +142,13 @@ test.describe("Test suite me-vue-app", function() {
 
   // Test case #4
   test.it("Test to get alt tag of logotype", function(done) {
-    const logotype = await browser.findElement(By.id("logotype"))
-    assert(logotype)
+    const logotype = browser.findElement(By.id("logotype"));
+    assert(logotype);
     done();
   });
 
-   // Test case #5
-   test.it("Test to sign in user", function(done) {
+  // Test case #5
+  test.it("Test to sign in user", function(done) {
     login();
     done();
   });
