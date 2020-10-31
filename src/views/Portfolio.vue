@@ -119,9 +119,6 @@ export default {
     });
   },
   methods: {
-    twoD(num) {
-      return Math.round(num * 100) / 100;
-    },
     getData() {
       axios({
         method: "POST",

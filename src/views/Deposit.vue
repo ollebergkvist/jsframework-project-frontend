@@ -10,12 +10,7 @@
           label-for="input-1"
           description="Available funds."
         >
-          <b-form-input
-            id="input-1"
-            value="0"
-            type="number"
-            readonly
-          ></b-form-input>
+          <b-form-input id="input-1" readonly>{{ balance }}</b-form-input>
         </b-form-group>
         <b-form-group
           id="input-group-2"
@@ -71,6 +66,7 @@ export default {
       form: {
         amount: "",
       },
+      balance: "",
       id: auth.id,
       user: "",
       show: true,
@@ -79,6 +75,9 @@ export default {
       flagError: "",
       messageCreate: "",
     };
+  },
+  mounted() {
+    this.getData();
   },
   methods: {
     depositMoney(event) {
@@ -106,6 +105,22 @@ export default {
           event.target.reset();
         });
     },
+  },
+  getData() {
+    axios({
+      method: "POST",
+      url: process.env.VUE_APP_SERVER + "/findone",
+      data: {
+        id: this.id,
+      },
+    }).then(
+      (result) => {
+        this.balance = result.data.balance;
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
   },
 };
 </script>
