@@ -8,7 +8,7 @@ const test = require("selenium-webdriver/testing");
 const firefox = require("selenium-webdriver/firefox");
 const webdriver = require("selenium-webdriver");
 const By = webdriver.By;
-let browser;
+var browser;
 
 async function goToNavLink(target) {
   await browser.findElement(By.linkText(target)).then(function(element) {
@@ -32,14 +32,14 @@ async function assertH4(target) {
 
 // Test suite
 test.describe("Test suite me-vue-app", function() {
-  test.beforeEach(async function(done) {
-    browser = await new webdriver.Builder()
+  test.beforeEach(function(done) {
+    browser = new webdriver.Builder()
       .withCapabilities(webdriver.Capabilities.firefox())
       .setFirefoxOptions(new firefox.Options().headless())
       .forBrowser("firefox")
       .build();
 
-    await browser.get("https://app-trading.ollebergkvist.me");
+    browser.get("https://app-trading.ollebergkvist.me");
     done();
   });
 
@@ -105,12 +105,6 @@ test.describe("Test suite me-vue-app", function() {
     done();
   });
 
-  // Test case #4
-  // test.it("Test sign in", function(done) {
-  //   login();
-  //   done();
-  // });
-
   // // Test case #2
   test.it("Test register route", function(done) {
     goToNavLink("Register");
@@ -120,15 +114,21 @@ test.describe("Test suite me-vue-app", function() {
   });
 
   // // Test case #3
-  test.it("Test to register account", function(done) {
-    goToNavLink("Register");
-    register();
-    done();
-  });
+  // test.it("Test navbar", function(done) {
+  //   navigationLinks();
+  //   done();
+  // });
 
-  // // Test case #5
-  test.it("Test navbar", function(done) {
-    navigationLinks();
-    done();
-  });
+  // // Test case #4
+  // test.it("Test to register account", function(done) {
+  //   goToNavLink("Register");
+  //   register();
+  //   done();
+  // });
+
+  // Test case #5
+  // test.it("Test sign in", function(done) {
+  //   login();
+  //   done();
+  // });
 });
