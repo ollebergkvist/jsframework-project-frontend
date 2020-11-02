@@ -49,7 +49,7 @@ import io from "socket.io-client";
 import Chart from "../components/Chart";
 
 let auth = require("../models/auth");
-var socket = io(process.env.VUE_APP_SERVER);
+var socket = io.connect(process.env.VUE_APP_SOCKET);
 
 export default {
   name: "Stocks",
@@ -61,8 +61,6 @@ export default {
       token: auth.token,
       id: auth.id,
       loaded: "",
-      flagSuccess: "",
-      flagError: "",
       message: "",
       chartData: {},
       chartOptions: {
@@ -93,7 +91,6 @@ export default {
         datasets: stock,
         labels: stock[0].labels,
       };
-
       this.loaded = true;
     });
   },

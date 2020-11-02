@@ -10,6 +10,7 @@ let auth = require("../models/auth");
 
 (function() {
   auth.token = "";
+  auth.id = "";
   console.log("Token = " + auth.token);
   router.push({ name: "Login" });
 })();

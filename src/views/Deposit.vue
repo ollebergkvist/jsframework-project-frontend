@@ -3,15 +3,8 @@
     <h2>Dashboard</h2>
     <div class="add-funds">
       <h4>Deposit money</h4>
+      <h6>Account balance: {{ getbalance }}</h6>
       <b-form v-on:submit.prevent="depositMoney">
-        <b-form-group
-          id="input-group-1"
-          label="Balance"
-          label-for="input-1"
-          description="Available funds."
-        >
-          <b-form-input id="input-1" readonly>{{ balance }}</b-form-input>
-        </b-form-group>
         <b-form-group
           id="input-group-2"
           label="Money"
@@ -26,7 +19,7 @@
           ></b-form-input>
         </b-form-group>
         <div v-if="flagSuccess">
-          <p>You succesfully deposited: {{ form.amount }} USD</p>
+          <p>You succesfully deposited: {{ purchaseAmount }} USD</p>
         </div>
         <div v-if="flagError">
           <p>Unfortunately it was not possible to deposit the money.</p>
@@ -65,6 +58,7 @@ export default {
     return {
       form: {
         amount: "",
+        purchaseAmount: "",
       },
       balance: "",
       id: auth.id,
@@ -79,6 +73,11 @@ export default {
   mounted() {
     this.getData();
   },
+  computed: {
+    getbalance: function() {
+      return this.balance;
+    },
+  },
   methods: {
     depositMoney(event) {
       axios({
@@ -88,6 +87,7 @@ export default {
         data: {
           id: this.id,
           amount: this.form.amount,
+          purchaseAmount: this.form.amount,
         },
       })
         .then(
@@ -105,22 +105,26 @@ export default {
           event.target.reset();
         });
     },
-  },
-  getData() {
-    axios({
-      method: "POST",
-      url: process.env.VUE_APP_SERVER + "/findone",
-      data: {
-        id: this.id,
-      },
-    }).then(
-      (result) => {
-        this.balance = result.data.balance;
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
+    getData() {
+      axios({
+        method: "POST",
+        url: process.env.VUE_APP_SERVER + "/findone",
+        data: {
+          id: this.id,
+        },
+      })
+        .then(
+          (result) => {
+            this.balance = result.data.balance;
+          },
+          (error) => {
+            console.error(error);
+          }
+        )
+        .then(() => {
+          this.getData();
+        });
+    },
   },
 };
 </script>
