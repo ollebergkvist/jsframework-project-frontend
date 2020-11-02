@@ -53,3 +53,21 @@ För att rita upp grafen valde jag att prova på en ny teknik, Vue-Chart som är
 Jag lekte runt lite med Rickshaw tidigare under kursen, men jag kände att det vore trevligt att lära sig en ny teknik samt en teknik som är anpassad just för Vue. Det fanns även väldigt bra dokumentation gällande wrappern samt har jag läst flertalet tekniker på Medium som rekommenderar ramverkt Chart.js. Det visade sig vara ett ytterst lämpligt val. Realtidsinformationen som generas från en fristående socket-server, visas upp i graf form där y axeln visar pris och x axeln tidpunkt. Jag lyckades få till en liveuppdatering även utav tidsstämplarna så dessa genereras automatiskt i samband med varje emit från servern. Något jag är väldigt nöjd med, det blev trevlig UX med andra ord. Jag la även till funktionalitet för att aktivera och deaktivera grafer för en särskild aktie, på så sätt kan en se aktierna indivduellt samt hur de jämför sig med varandra över tid.
 
 Slutligen har appen stylats för att även fungera på mobila enheter (responsivt), något som är väldigt enkelt att få till med hjälp utav Bootstrap, en anledning till varför jag valde att arbeta med detta css bibliotek för projektet. Bootstrap har även väldigt bra default formulär som är framtagna från diverse studier gällande användarvänlighet, jag skulle vilja påstå att jag har fått till en trevlig app som är enkel att använda. Samt använde jag mig utav ett typografiskt grid för att öka läsbarheten.
+
+### Krav 5: Tester Frontend
+
+Anträffande testsviten för min frontend applikation valde jag att integrera Mocha och Selenium, valet baserades framför allt på att Selenium verkar ha varit någon slags industri standard en gång i tiden, om jag skulle göra om detta krav skulle jag dock välja att använda en annan teknik så som Cypress, där en kan fokusera på att skriva avancerade testfall utan att behöva oroa sig för att asynkrona problem, något som enligt egen erfarenhet Selenium verkar ha svårigheter med. En annan nackdel med Selenium och tillhörande drivers var att jag trots en hel del undersökning inte kunde få testerna att fungera lokalt, vilket ledde till att varje gång jag ville göra ett test så fick jag göra det headless via Travis och Scrutinizer, där åtminstone Travis tar 3-5 minuter att köra klart programmet. Med andra ord anser jag det väldigt ineffektivt om en inte först kan köra testerna lokalt innan en pushar sitt repo. Cypress om jag förstått rätt väntar automatiskt för commands och assertions, medan i Selenium måste addera explicita och implicita "wait" kommandon för att fungera. Där det senare visade sig inte att gå att fungera i de fall det behövdes i mitt case. Jag ville skriva mer komplicerade test fall för att fylla i formulär, registrera användare och logga in användare tex, men efter 1.5 dags försök och 70 github commits senare bekände jag mig besegrad utav Seleniums begränsningar. Med hänsyn till detta fick jag i slutändan förenkla min testfall och avgränsa dessa till endast testa funktionalitet som inte kräver någon form utav inloggning eller registrering.
+
+Testerna körs genom kommandot "npm test" och det går även att validera koden med hjälp utav eslint vilket går att exekvera med hjälp utav kommandot "npm run eslint".
+
+Use cases:
+
+#1 Testa index routen
+
+#2 Testa registrerings routen
+
+#3 Testa navigeringsmenyn
+
+#4 Testa att logotypen har renderats
+
+#5 Testa att klicka på logotypen och nå min personliga webbplats
